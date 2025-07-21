@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Amor ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #f8d7ff 25%, #e1c3ff 50%, #d1b3ff 75%, #c8a6ff 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Falling hearts animation */
+        .heart {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.7);
+            font-size: 20px;
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Title */
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #8b4d8e;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Photos container */
+        .photos-container {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        /* Counter */
+        .counter-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .counter-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #8b4d8e;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .counter-display {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+
+        .counter-item {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+            color: white;
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .counter-number {
+            font-size: 2rem;
+            font-weight: 600;
+            display: block;
+        }
+
+        .counter-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Music controls */
+        .music-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            padding: 15px 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 5px;
+            background: #ddd;
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #ff6b9d;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Love message */
+        .love-message {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 1.5rem;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .love-message p {
+            font-size: 1.1rem;
+            color: #8b4d8e;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .photos-container div {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .photo-container {
+                width: 150px !important;
+                height: 150px !important;
+            }
+
+            .counter-display {
+                gap: 0.5rem;
+            }
+
+            .counter-item {
+                padding: 0.8rem;
+                min-width: 80px;
+            }
+
+            .counter-number {
+                font-size: 1.5rem;
+            }
+
+            .music-controls {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 15px;
+            }
+
+            .volume-slider {
+                width: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .photos-container div {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px !important;
+            }
+
+            .photo-container {
+                width: 120px !important;
+                height: 120px !important;
+            }
+
+            .counter-container {
+                padding: 1rem;
+            }
+
+            .counter-title {
+                font-size: 1.5rem;
+            }
+
+            .counter-display {
+                gap: 0.3rem;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .counter-item {
+                padding: 0.6rem;
+                min-width: 70px;
+                margin: 0.2rem;
+            }
+
+            .counter-number {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Floating animation for main elements */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Photo hover effects */
+        .photo-container:hover {
+            transform: scale(1.05) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title floating">Nosso amor é lindo ❤️</h1>
+        
+        <div class="photos-container floating">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 25px; max-width: 800px; margin: 0 auto; justify-items: center;">
+                <div class="photo-container" style="width: 180px; height: 180px; border-radius: 50%; overflow: hidden; border: 4px solid #ff6b9d; box-shadow: 0 15px 30px rgba(255,107,157,0.4); transition: transform 0.3s ease;">
+                    <img src="foto1.jpg" alt="Nosso amor" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="photo-container" style="width: 180px; height: 180px; border-radius: 50%; overflow: hidden; border: 4px solid #ff6b9d; box-shadow: 0 15px 30px rgba(255,107,157,0.4); transition: transform 0.3s ease;">
+                    <img src="foto2.jpg" alt="Nosso amor" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="photo-container" style="width: 180px; height: 180px; border-radius: 50%; overflow: hidden; border: 4px solid #ff6b9d; box-shadow: 0 15px 30px rgba(255,107,157,0.4); transition: transform 0.3s ease;">
+                    <img src="foto3.jpg" alt="Nosso amor" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="photo-container" style="width: 180px; height: 180px; border-radius: 50%; overflow: hidden; border: 4px solid #ff6b9d; box-shadow: 0 15px 30px rgba(255,107,157,0.4); transition: transform 0.3s ease;">
+                    <img src="foto4.jpg" alt="Nosso amor" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+        <div class="counter-container">
+            <div class="counter-title">Juntos há...</div>
+            <div class="counter-display" id="counter">
+                <div class="counter-item">
+                    <span class="counter-number" id="days">0</span>
+                    <span class="counter-label">Dias</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-number" id="hours">0</span>
+                    <span class="counter-label">Horas</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-number" id="minutes">0</span>
+                    <span class="counter-label">Minutos</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-number" id="seconds">0</span>
+                    <span class="counter-label">Segundos</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="love-message">
+            <p>"Eu olho pro futuro e não me vejo sozinho. Me vejo com você." 💕</p>
+        </div>
+    </div>
+
+    <div class="music-controls">
+        <button class="play-btn" id="playBtn">▶️</button>
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
+        <span style="font-size: 12px; color: #8b4d8e;">🎵</span>
+    </div>
+
+    <!-- Audio element with romantic song -->
+    <audio id="backgroundMusic" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Falling hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
+            heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Create hearts every 500ms
+        setInterval(createHeart, 500);
+
+        // Relationship counter
+        const startDate = new Date('2025-05-19T00:00:00');
+        
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        
+        // Update counter every second
+        setInterval(updateCounter, 1000);
+        updateCounter(); // Initial call
+
+        // Music controls
+        const audio = document.getElementById('backgroundMusic');
+        const playBtn = document.getElementById('playBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        
+        let isPlaying = false;
+        
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playBtn.innerHTML = '▶️';
+                isPlaying = false;
+            } else {
+                audio.play().catch(e => {
+                    console.log('Auto-play prevented by browser policy');
+                });
+                playBtn.innerHTML = '⏸️';
+                isPlaying = true;
+            }
+        });
+        
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value / 100;
+        });
+        
+        // Set initial volume
+        audio.volume = 0.5;
+        
+        // Auto-play attempt (may be blocked by browser)
+        window.addEventListener('load', () => {
+            audio.play().then(() => {
+                playBtn.innerHTML = '⏸️';
+                isPlaying = true;
+            }).catch(() => {
+                console.log('Auto-play prevented by browser policy');
+            });
+        });
+
+        // Add click event to enable audio on user interaction
+        document.addEventListener('click', function enableAudio() {
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    playBtn.innerHTML = '⏸️';
+                    isPlaying = true;
+                }).catch(() => {
+                    console.log('Could not play audio');
+                });
+            }
+            document.removeEventListener('click', enableAudio);
+        }, { once: true });
+    </script>
+</body>
+</html>
